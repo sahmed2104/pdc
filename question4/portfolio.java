@@ -13,4 +13,20 @@ public class portfolio extends RecursiveAction{
         end=en;
         risk=ris;
     }
+    @Override 
+    protected void compute(){
+        if(end-start <=threshold){
+            for(int i=start; i<end;i++){
+                if(assets[i]>risk){
+                    assets[i]=assets[i]*0.95;
+                }
+            }
+        }
+        else {
+            int mid=(start + end)/2;
+            portfolio left=new portfolio(assets, start, mid, risk);
+            portfolio right=new portfolio(assets, mid, end, risk);
+            invokeAll(left, right);
+        }
+    }
 }
