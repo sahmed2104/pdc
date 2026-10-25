@@ -10,4 +10,10 @@ public class tradeevent {
         timestamp=time;
         bprice=price;
     }
+    public void dispatch(){
+        System.out.println("trade event: ");
+        System.out.println("sender id: "+ sid);
+        System.out.println("time: "+timestamp);
+        System.out.println("base price: "+bprice);
+    }
 }
