@@ -28,5 +28,11 @@ public class transactionstack {
         }
         return elements[top];
     }
-    
+    public boolean isempty(){
+        return top==-1;
+    }
+    private void resize(){
+        int newsize=elements.length*2;
+        elements=java.util.Arrays.copyOf(elements, newsize);
+    }
 }
