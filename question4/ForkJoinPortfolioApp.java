@@ -1,4 +1,4 @@
-
+package question4;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 
@@ -31,8 +31,8 @@ public class ForkJoinPortfolioApp {
 
         long parallelStart = System.nanoTime();
 
-        ParallelRiskCalculator riskTask =
-                new ParallelRiskCalculator(assets, 0, assets.length);
+        parallelriskcalculator riskTask =
+                new parallelriskcalculator(assets, 0, assets.length);
 
         double parallelRisk = pool.invoke(riskTask);
 
@@ -40,8 +40,8 @@ public class ForkJoinPortfolioApp {
 
         long stressStart = System.nanoTime();
 
-        PortfolioThresholdTask stressTask =
-                new PortfolioThresholdTask(
+        portfolio stressTask =
+                new portfolio(
                         assets, 0, assets.length, riskCap);
 
         pool.invoke(stressTask);
@@ -49,7 +49,7 @@ public class ForkJoinPortfolioApp {
         long stressEnd = System.nanoTime();
 
         double adjustedRisk = pool.invoke(
-                new ParallelRiskCalculator(assets, 0, assets.length));
+                new parallelriskcalculator(assets, 0, assets.length));
 
         System.out.println("PORTFOLIO RISK ASSESSMENT");
         System.out.println("------------------------");
@@ -63,8 +63,7 @@ public class ForkJoinPortfolioApp {
         System.out.println("Adjusted risk score: " + adjustedRisk);
 
         System.out.println();
-        System.out.println("PROCESSING TIMES");
-        System.out.println("----------------");
+        System.out.println("PROCESSING TIMES \n");
 
         System.out.println("Serial calculation time: "
                 + (serialEnd - serialStart) / 1000000.0 + " ms");
@@ -81,6 +80,6 @@ public class ForkJoinPortfolioApp {
             System.out.println("Risk calculations do not match.");
         }
 
-        pool.shutdown();
+        pool.close();
     }
 }
