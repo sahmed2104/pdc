@@ -9,4 +9,14 @@ public class reuterevent extends tradeevent {
         bidprice=bid;
         askprice=ask;
     }
+    @Override 
+    public void dispatch(){
+        double gap= askprice - bidprice;
+        System.out.println("reuters market quote: ");
+        System.out.println("sender id: "+ sid);
+        System.out.println("baseprice: "+ bprice);
+        System.out.println("bid price: "+ bidprice);
+        System.out.println("ask price: "+askprice);
+        System.out.println("bid ask price gap: "+ gap);
+    }
 }
